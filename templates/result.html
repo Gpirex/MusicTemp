@@ -1,0 +1,11 @@
+<!doctype html>
+<title>Your Playlists</title>
+<div>
+    <h1>Songs to listen:</h1>
+    <hr>
+    <br>
+    {% for track in playlist %}
+    <li>{{ track }}</li>
+    {% endfor %}
+</div>
+
