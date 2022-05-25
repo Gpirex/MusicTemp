@@ -3,6 +3,7 @@ from flask import render_template
 from flask import url_for
 from back.musicKind import *
 from back.weather import *
+from back.spotify import * 
 
 
 app = Flask(__name__)
@@ -13,15 +14,19 @@ def index():
 
 @app.route('/result')
 def result():
-    return render_template('result.html')
+    playlist = request.args['playlist']
+    print(playlist)
+    return render_template("result.html")
 
 @app.route('/getData', methods=['GET'])
 def inputCity():
     city_name = request.args.get("city_name")
     temp = Weather(city_name)
     musicGenre = MusicKind(temp.cityData)
-    print(musicGenre.musicKind)
-    return redirect(url_for('result'))
+    list = Tracks(musicGenre.musicKind)
+    tracks = list.category
+
+    return redirect(url_for('result', playlist=tracks))
 
 
 if __name__ == '__main__':
