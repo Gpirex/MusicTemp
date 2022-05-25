@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect
 from flask import render_template
 from flask import url_for
-from back.musicTemp import *
+from back.musicKind import *
 from back.weather import *
 
 

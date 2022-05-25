@@ -1,24 +1,10 @@
-# CODIGO EM NODE
-#
-#  var spotifyApi = new SpotifyWebApi({
-#         clientId: '9404b7d0c6b54849a0c83766dd69825d',
-#         clientSecret: 'fe265b4df8af4373a6026b330319f5a7'
-#       });
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
 
-#       var listPlaylist = []
-#       spotifyApi.clientCredentialsGrant()
-#         .then (function (data) {
-        
-#           spotifyApi.setAccessToken(data.body['access_token']);
+sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="9b40b39fd4cd4fc29d4a33a6d56ad377",client_secret="fee39f10acd941af80ac03ed87b6e65b"))
 
-#           spotifyApi.search(resultDeMusic, ['playlist'], { limit: 5, offset: 1 }).then(function (data) {
-#             var playlist = data.body.playlists.items
-            
+results = sp.search(q='party', limit=5)
+for idx, track in enumerate(results['tracks']['items']):
+    print(idx, track['name'])
 
-#             var cont = 0
-#             while (playlist.length != cont) {
-#               var nomePlaylists = data.body.playlists.items[cont]['name']
-#               listPlaylist.push(nomePlaylists)
-#               cont += 1
-#             }
-#             console.log(listPlaylist);
+
