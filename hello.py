@@ -30,3 +30,5 @@ def inputCity():
 
 if __name__ == '__main__':
     app.run(debug=True,port='8080')
+    
+# Podem Apertar o Play e abrir a Url gerada!
